@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import Card from './Card';
 import { HiArrowSmRight } from "react-icons/hi";
 import Sidebar from './Sidebar';
-import NotesFrom from './NotesFrom';
+import NotesForm from './NotesForm';
 import axios from 'axios';
+
 
 function Foreground() {
   const ref = useRef(null);
@@ -38,7 +39,7 @@ function Foreground() {
   return (
     <div ref={ref} className='fixed z-[3] top-0 left-0 w-full h-full p-5 flex gap-5 flex-wrap'>
 
-      <Sidebar isSidebarOpen={isSidebarOpen} closeSidebar={toggleSidebar} openForm={openForm} />
+      <Sidebar isSidebarOpen={isSidebarOpen} closeSidebar={toggleSidebar} openForm={openForm} fetchData={fetchData} />
 
       <HiArrowSmRight
         onClick={toggleSidebar}
@@ -48,7 +49,7 @@ function Foreground() {
       {
         isFormOpen && (
           <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[9999]'>
-            <NotesFrom onClose={closeForm} />
+            <NotesForm onClose={closeForm} />
           </div>
         )
       }
