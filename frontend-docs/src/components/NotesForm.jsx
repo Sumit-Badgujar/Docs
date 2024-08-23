@@ -3,20 +3,32 @@ import React, { useState } from 'react';
 import { GrFormClose } from "react-icons/gr";
 import axios from "axios";
 
-function NotesForm({ onClose }) { // Note: Fixed typo in function name
+function NotesForm({ onClose, initialTitle = '', initialContent = '', docId, setData, isEditing }) { // Note: Fixed typo in function name
 
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState(initialTitle);
+  const [content, setContent] = useState(initialContent);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/docs/v1/access/docs/create', {
-        title,
-        content
-      });
-      console.log(response.data.message);
-      alert('Document created successfully!');
+      if (docId) {
+        const response = await axios.put(`http://localhost:3000/docs/v1/access/docs/update/${docId}`, {
+          title,
+          content
+        });
+        console.log(response.data.message);
+        alert('Document updated successfully!');
+
+
+      } else {
+
+        const response = await axios.post('http://localhost:3000/docs/v1/access/docs/create', {
+          title,
+          content
+        });
+        console.log(response.data.message);
+        alert('Document created successfully!');
+      }
       onClose(); // Close the form after successful submission
     } catch (error) {
       console.error('Error creating document:', error);
@@ -51,13 +63,26 @@ function NotesForm({ onClose }) { // Note: Fixed typo in function name
           onChange={(e) => setContent(e.target.value)}
           className='p-4 rounded-xl bg-slate-300 font-light text-lg w-full resize-none'
         />
-        <button
-          type="submit"
-          className='bg-purple-600 px-5 py-4 rounded-[45px] my-5 mx-auto w-2/5 text-center text-white font-semibold text-lg hover:bg-purple-700 hover:scale-105 flex gap-2 items-center justify-center'
-        >
-          <FaRegFileAlt />
-          Create Doc
-        </button>
+        {
+          isEditing ? (
+            <button
+              type="submit"
+              className='bg-purple-600 px-5 py-4 rounded-[45px] my-5 mx-auto w-2/5 text-center text-white font-semibold text-lg hover:bg-purple-700 hover:scale-105 flex gap-2 items-center justify-center'
+            >
+              <FaRegFileAlt />
+              Update Doc
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className='bg-purple-600 px-5 py-4 rounded-[45px] my-5 mx-auto w-2/5 text-center text-white font-semibold text-lg hover:bg-purple-700 hover:scale-105 flex gap-2 items-center justify-center'
+            >
+              <FaRegFileAlt />
+              Create Doc
+            </button>
+          )
+        }
+
       </form>
     </div>
   );

@@ -5,7 +5,7 @@ import SideBarList from './SideBarList';
 function Sidebar({ isSidebarOpen, toggleSidebar, openForm, fetchData }) {
   return (
     <div
-      className={`fixed select-none top-10 rounded-xl left-0 h-5/6 p-3 bg-zinc-900 text-white transform ${isSidebarOpen ? 'translate-x-0 w-[300px]' : 'w-[50px] -translate-x-[250px]'} transition-all duration-300 ease-in-out z-[2]`} >
+      className={`fixed  select-none top-10 rounded-xl left-0 h-1/2 p-3 bg-zinc-900 text-white transform ${isSidebarOpen ? 'translate-x-0 w-[300px]' : 'w-[50px] -translate-x-[250px]'} transition-all duration-300 ease-in-out z-[2]`} >
 
       {isSidebarOpen && (
         <div className="p-5">
