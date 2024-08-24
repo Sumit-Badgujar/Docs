@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import axios from 'axios';
 import NotesForm from './NotesForm';
 import DocView from './DocView';
+import { toast, Slide } from 'react-toastify';
 
 function Card({ mainDataArr, data, setData, reference }) {
 
@@ -18,7 +19,7 @@ function Card({ mainDataArr, data, setData, reference }) {
 
   const showSmallContent = data.content.substring(0, 100) + '...';
 
-  const randomColor = Math.random() > 0.5 ? "bg-blue-600" : "bg-green-600";
+  const randomColor = Math.random() > 0.5 ? "bg-purple-600" : "bg-green-600";
 
   const deleteDoc = async () => {
     try {
@@ -26,10 +27,30 @@ function Card({ mainDataArr, data, setData, reference }) {
       if (response.status === 200) {
         setData(mainDataArr.filter(doc => doc._id !== data._id))
 
-        console.log('Document successfully deleted');
+        toast.success('Document successfully deleted', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Slide,
+        });
       }
     } catch (e) {
-      console.error('Error deleting document:', e);
+      toast.error('Error deleting document:', e, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Slide,
+      });
     }
 
   };
@@ -77,10 +98,9 @@ function Card({ mainDataArr, data, setData, reference }) {
               <h3>{formatedDate}</h3>
             </div>
 
-            <span className='w-7 h-7 bg-zinc-600 rounded-full flex items-center justify-center'
+            <span className='w-7 h-7 bg-zinc-600 rounded-full   flex items-center justify-center'
               onClick={deleteDoc}
             >
-              {/* {data.close ? <IoCloseSharp /> : <LuDownload  size='.7em' color='#fff'/> } */}
               <AiTwotoneDelete />
             </span>
 

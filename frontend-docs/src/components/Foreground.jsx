@@ -4,7 +4,7 @@ import { HiArrowSmRight } from "react-icons/hi";
 import Sidebar from './Sidebar';
 import NotesForm from './NotesForm';
 import axios from 'axios';
-
+import { toast, Slide } from 'react-toastify';
 
 function Foreground() {
   const ref = useRef(null);
@@ -16,22 +16,44 @@ function Foreground() {
     try {
       const response = await axios.get('http://localhost:3000/docs/v1/access/docs/getall');
       setData(response.data.docs)
+      toast.success('Documents Fetched successfully ! ', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Slide,
+      });
     } catch (err) {
-      console.log('Error fetching data' + err);
+      // console.log('Error fetching data' + err);
+      toast.error('Error while fetching document:', e, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Slide,
+      });
     }
   }
 
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(data);
+  // console.log(data);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   const openForm = () => {
-    console.log('openForm called');
+    // console.log('openForm called');
     setIsFormOpen(true);
   }
   const closeForm = () => setIsFormOpen(false);

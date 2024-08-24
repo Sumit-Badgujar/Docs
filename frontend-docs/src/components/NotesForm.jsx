@@ -2,8 +2,9 @@ import { FaRegFileAlt } from "react-icons/fa";
 import React, { useState } from 'react';
 import { GrFormClose } from "react-icons/gr";
 import axios from "axios";
+import { toast, Slide } from 'react-toastify';
 
-function NotesForm({ onClose, initialTitle = '', initialContent = '', docId, setData, isEditing }) { // Note: Fixed typo in function name
+function NotesForm({ onClose, initialTitle = '', initialContent = '', docId, setData, isEditing }) {
 
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
@@ -16,22 +17,53 @@ function NotesForm({ onClose, initialTitle = '', initialContent = '', docId, set
           title,
           content
         });
-        console.log(response.data.message);
-        alert('Document updated successfully!');
-
-
+        // console.log(response.data.message);
+        // alert('Document updated successfully!');
+        toast.success('Document updated successfully ! ', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Slide,
+        });
       } else {
 
         const response = await axios.post('http://localhost:3000/docs/v1/access/docs/create', {
           title,
           content
         });
-        console.log(response.data.message);
-        alert('Document created successfully!');
+        // console.log(response.data.message);
+        // alert('Document created successfully!');
+        toast.success('Document created successfully!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Slide,
+        });
       }
       onClose(); // Close the form after successful submission
     } catch (error) {
-      console.error('Error creating document:', error);
+      // console.error('Error creating document:', error);
+      toast.error('Error while creating document:', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Slide,
+      });
     }
   };
 

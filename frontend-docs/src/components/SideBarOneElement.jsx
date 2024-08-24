@@ -6,7 +6,7 @@ function SideBarOneElement({ icon: Icon, label, onClick }) {
     <div>
       <li
         onClick={() => {
-          console.log(`${label} clicked`);  // Debug statement
+          // console.log(`${label} clicked`);  // Debug statement
           if (onClick) onClick();
         }}
         className="flex items-center p-2 hover:bg-zinc-700 rounded-md cursor-pointer">
