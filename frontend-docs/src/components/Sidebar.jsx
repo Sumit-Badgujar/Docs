@@ -1,5 +1,4 @@
 import React from 'react';
-import { HiArrowSmRight, HiHome, HiDocumentAdd } from "react-icons/hi";
 import SideBarList from './SideBarList';
 
 function Sidebar({ isSidebarOpen, toggleSidebar, openForm, fetchData }) {

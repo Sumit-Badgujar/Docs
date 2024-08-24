@@ -1,6 +1,6 @@
 import React from 'react'
 import Background from './components/Background'
-import Foreground from './components/foreground'
+import Foreground from './components/Foreground'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { HiArrowSmRight, HiHome, HiDocumentAdd } from "react-icons/hi";
+import { HiHome, HiDocumentAdd } from "react-icons/hi";
 import SideBarOneElement from './SideBarOneElement';
 
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import { HiArrowSmRight, HiHome, HiDocumentAdd } from "react-icons/hi";
 
 function SideBarOneElement({ icon: Icon, label, onClick }) {
   return (
