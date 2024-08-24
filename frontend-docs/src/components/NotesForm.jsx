@@ -13,7 +13,7 @@ function NotesForm({ onClose, initialTitle = '', initialContent = '', docId, set
     e.preventDefault();
     try {
       if (docId) {
-        const response = await axios.put(`http://localhost:3000/docs/v1/access/docs/update/${docId}`, {
+        const response = await axios.put(`/api/docs/v1/access/docs/update/${docId}`, {
           title,
           content
         });
@@ -32,7 +32,7 @@ function NotesForm({ onClose, initialTitle = '', initialContent = '', docId, set
         });
       } else {
 
-        const response = await axios.post('http://localhost:3000/docs/v1/access/docs/create', {
+        const response = await axios.post('/api/docs/v1/access/docs/create', {
           title,
           content
         });

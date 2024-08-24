@@ -23,7 +23,7 @@ function Card({ mainDataArr, data, setData, reference }) {
 
   const deleteDoc = async () => {
     try {
-      const response = await axios.delete(`http://localhost:3000/docs/v1/access/docs/delete/${data._id}`)
+      const response = await axios.delete(`/api/docs/v1/access/docs/delete/${data._id}`)
       if (response.status === 200) {
         setData(mainDataArr.filter(doc => doc._id !== data._id))
 
@@ -35,7 +35,7 @@ function Card({ mainDataArr, data, setData, reference }) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: "colored",
           transition: Slide,
         });
       }

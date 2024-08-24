@@ -14,7 +14,7 @@ function Foreground() {
 
   async function fetchData() {
     try {
-      const response = await axios.get('http://localhost:3000/docs/v1/access/docs/getall');
+      const response = await axios.get('/api/docs/v1/access/docs/getall');
       setData(response.data.docs)
       toast.success('Documents Fetched successfully ! ', {
         position: "top-center",
@@ -29,7 +29,7 @@ function Foreground() {
       });
     } catch (err) {
       // console.log('Error fetching data' + err);
-      toast.error('Error while fetching document:', e, {
+      toast.error(`Error while fetching document:{e}`, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
