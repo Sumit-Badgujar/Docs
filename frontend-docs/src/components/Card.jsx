@@ -23,7 +23,7 @@ function Card({ mainDataArr, data, setData, reference }) {
 
   const deleteDoc = async () => {
     try {
-      const response = await axios.delete(`/api/docs/v1/access/docs/delete/${data._id}`)
+      const response = await axios.delete(`51.20.81.139:3000/docs/v1/access/docs/delete/${data._id}`)
       if (response.status === 200) {
         setData(mainDataArr.filter(doc => doc._id !== data._id))
 
