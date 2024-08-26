@@ -14,7 +14,7 @@ function Foreground() {
 
   async function fetchData() {
     try {
-      const response = await axios.get('51.20.81.139:3000/docs/v1/access/docs/getall');
+      const response = await axios.get('http://api/docs/v1/access/docs/getall');
       setData(response.data.docs)
       toast.success('Documents Fetched successfully ! ', {
         position: "top-center",
